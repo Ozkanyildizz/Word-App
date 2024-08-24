@@ -2,7 +2,7 @@
 This project involves extracting words from a table in a DOCX file. 
 I discovered 3,000 English words from Oxford and realized I could use them. 
 First, I converted the PDF file to a Word document using my converter app. 
-Then, I gathered all the words and saved them in the "first.txt" file. After removing certain entries like (A1, B1, v., adj. etc.) and saved on "second.txt", 
+Then, I gathered all the words and saved them in the "first.txt" file. After removing certain entries like (A1, B1, v., adj. etc.), 
 Finnaly, I translated them and saved on "The_Oxford_3000.txt".Now I can add this file to my Word App Which I developed before.
 """
 
@@ -60,7 +60,6 @@ class Check:
         with open("first.txt","r") as file:
             lines = file.readlines()
             for i in lines:
-                self.write(self.check(i))
                 Translate(i.replace("\n",""),self.check(i))
 
     def check(self, word):
@@ -68,10 +67,6 @@ class Check:
         for i in my_list:
             word = word.replace(i, "")
         return word
-    
-    def write(self,word):
-        with open("second.txt","a") as file:
-            file.write(f"{word}\n")
     
 
 if __name__ == "__main__":
