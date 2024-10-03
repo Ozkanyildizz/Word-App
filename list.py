@@ -59,7 +59,6 @@ class Liste_ac(customtkinter.CTkFrame,):
             self.treeview.tag_configure('ovenrow',background="lightgreen")
             self.treeview.insert('',tkinter.END,values=new_values,tags='ovenrow')
             oku6.close()
-    # entryden alınanları treeviewe ekler
     def listeye_ekle(self):
         self.values=(self.kelime_entry.get(),self.anlam_entry.get(),self.ornek_entry.get())
         if self.kelime_entry.get() == "" or self.anlam_entry.get() == "":

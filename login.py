@@ -1,6 +1,7 @@
 import customtkinter,tkinter
 import json
 import os
+#from PIL import ImageTk,Image
 import main_menu
 
 class Giris(customtkinter.CTkFrame):
@@ -11,8 +12,8 @@ class Giris(customtkinter.CTkFrame):
     def LoginScreen(self):
         self.giris_frame = customtkinter.CTkFrame(self,corner_radius=10)
         self.giris_frame.place(relx=0,rely=0,relwidth=1,relheight=1)
-        
-        # giriş frame, entryler var
+    
+        # giriş frame entryler var
         self.giris1_frame = customtkinter.CTkFrame(self.giris_frame,
                                          fg_color="black",
                                          corner_radius=20)
@@ -21,7 +22,7 @@ class Giris(customtkinter.CTkFrame):
         # giriş yap label
         self.giris_yap = tkinter.Label(self.giris1_frame,text="GİRİŞ YAP",font="Times 25",background="black",foreground="white")
         self.giris_yap.place(relx=0.49,rely=0.26,anchor = tkinter.CENTER,relwidth=0.8,relheight=0.1)
-        # kullanıcı adı şifre entry
+     # kullanıcı adı şifre entry
         self.userid_entry = customtkinter.CTkEntry(self.giris1_frame,
                                       placeholder_text="Kullanıcı Adı",
                                       border_width=2,
@@ -72,7 +73,7 @@ class Giris(customtkinter.CTkFrame):
         # kaydol butonu 
         self.giris_button.place_forget()
         self.kaydol_button.place_forget()
-        self.kaydet_button=customtkinter.CTkButton(self.giris1_frame,text="Kaydol",command=self.kullanıcı_adısifre_kaydet)
+        self.kaydet_button=customtkinter.CTkButton(self.giris1_frame,text="Kaydol",command=self.kullanıcıadısifre_kaydet)
         self.kaydet_button.place(relx=0.5,rely=0.65,anchor=tkinter.CENTER,relwidth=0.7,relheight=0.07)
         
         # label uyarı
@@ -96,7 +97,7 @@ class Giris(customtkinter.CTkFrame):
         self.kaydol_button.place(relx=0.3,rely=0.65,anchor=tkinter.CENTER,relwidth=0.35,relheight=0.07)
         
 # şifreleri bir json dosyasına kaydeder 
-    def kullanıcı_adısifre_kaydet(self):
+    def kullanıcıadısifre_kaydet(self):
             try:
                 if os.path.exists(f"{self.userid_entry.get()}.json"):
                     self.mystringvar3.set("Lütfen Farklı Bir kullanıcı Girin")
@@ -106,7 +107,6 @@ class Giris(customtkinter.CTkFrame):
                     person_dict={"Kullanici Adi":f"{self.userid_entry.get()}","Sifre":f"{self.password_entry.get()}"}
                     with open(f"{self.userid_entry.get()}.json","a") as file:   
                         json.dump(person_dict,file)
-                    menu = main_menu.Menu(self, user_id = self.userid_entry.get())
-                    self.giris_frame.destroy()
+                    self.mystringvar3.set("Kaydedildi! Lütfen Giriş Yapın")
             except Exception as a:
                 self.mystringvar3.set("Lütfen Farklı Bir kullanıcı Girin")

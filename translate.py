@@ -60,7 +60,7 @@ class Ceviri_ac(customtkinter.CTkFrame,):
             self.text_en_tr_sonuc.insert("0.0",str(result))
         except Exception as a:
             tkinter.messagebox.showwarning("HATA","Çevrilemedi tekrar deneyin\n(internete bağlı olduğunuzdan emin olun).")
-# cevirideki bütün textboksları temizler
+# cevirideki bütün txttboksları temizler
     def sil(self):
         self.textboks1.delete("0.0","end")
         self.textboks2.delete("0.0","end")
@@ -72,7 +72,7 @@ class Ceviri_ac(customtkinter.CTkFrame,):
             self.toplevel_ing() # create window if its None or destroyed
         else:
             self.toplevel_window.focus()  # if window exists focus it
-# çeviri kelimelerini listeye ekler
+    # çeviri kelimelerini listeye ekler
     def toplevel_ing(self):
         self.toplevel_window = customtkinter.CTkToplevel(master=self)
         self.toplevel_window.state("normal")
@@ -84,6 +84,8 @@ class Ceviri_ac(customtkinter.CTkFrame,):
         for i in self.listbox_get:
             self.listbox_ceviri.insert(self.listbox_ceviri.size(),i)
  
+        
+            
     def Add_to_list_ing(self):
         yaz = f"{self.textboks1.get(1.0, "end-1c")}, {self.text_en_tr_sonuc.get(1.0, "end-1c")},\n"
         oku6 =open(f"{self.listbox_ceviri.get(self.listbox_ceviri.curselection())}.txt","a",encoding='utf-8')

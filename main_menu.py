@@ -6,7 +6,7 @@ import login
 import list
 import translate
 import exercise
-
+import gemini
 class Menu(customtkinter.CTkFrame):
     def __init__(self,parent,user_id):
         super().__init__(parent)
@@ -17,6 +17,7 @@ class Menu(customtkinter.CTkFrame):
         self.ceviri_ac = None
         self.alıstırma_ac = None
         self.frame2 = None
+        self.gramer_frame = None
         self.widgets_button()
         self.widgets_list()
     def widgets_list(self):
@@ -34,29 +35,31 @@ class Menu(customtkinter.CTkFrame):
         self.button_Ac = customtkinter.CTkButton(self.frame3,text="Listeyi Aç",width=80,corner_radius=15,command=self.liste_ac).place(relx=0.6,rely=0.25,relwidth=0.17,relheight=0.5)
         self.button_Sil = customtkinter.CTkButton(self.frame3,text="Sil",width=80,corner_radius=15,command=self.liste_sil).place(relx=0.8,rely=0.25,relwidth=0.17,relheight=0.5)
         # list
-        self.listbox = CTkListbox(self.frame2,multiple_selection=True,height=850)
+        self.listbox = CTkListbox(self.frame2,multiple_selection=True,height=640)
         self.listbox.pack(fill="both", expand=True, padx=5, pady=5)
         self.oku(self.listbox)
     
     def widgets_button(self):
-        # menu frame sol taraf
+        # menu frame
         self.frame1 = customtkinter.CTkFrame(self.ana_frame,fg_color="black",corner_radius=15)
         self.frame1.place(x=1,y=1,relwidth=0.29,relheight=1)
-        # frame1 butonları
+        
         self.buton_benimsözlük = customtkinter.CTkButton(self.frame1,text="Listem",corner_radius=15,
                                                 command=self.benim_sözlük).place(relx=0.1,rely=0.25,relwidth=0.8,relheight=0.1)
         self.buton_onlinesözlük = customtkinter.CTkButton(self.frame1,text="Çeviri",corner_radius=15,
                                                  command=self.ceviri).place(relx=0.1,rely=0.41,relwidth=0.8,relheight=0.1)
         self.buton_profil = customtkinter.CTkButton(self.frame1,text="Alıştırma",corner_radius=15,
-                                           command=self.alıstırma).place(relx=0.1,rely=0.58,relwidth=0.8,relheight=0.1)
-        # indicators
+                                           command=self.alıstırma).place(relx=0.1,rely=0.57,relwidth=0.8,relheight=0.1)
+        self.buton_gramer = customtkinter.CTkButton(self.frame1,text="Gramer kotrol",corner_radius=15,
+                                           command=self.gramer).place(relx=0.1,rely=0.73,relwidth=0.8,relheight=0.1)
         self.lbl1= customtkinter.CTkLabel(self.frame1,text="",corner_radius=25,fg_color="green",height=50,width=5)
         self.lbl1.place(relx=0.01,rely=0.25,relwidth=0.04,relheight=0.1)
         self.lbl2= customtkinter.CTkLabel(self.frame1,corner_radius=25,text="",fg_color="black",height=50,width=5)
         self.lbl2.place(relx=0.001,rely=0.41,relwidth=0.04,relheight=0.1)
         self.lbl3= customtkinter.CTkLabel(self.frame1,corner_radius=25,text="",fg_color="black",height=50,width=5)
-        self.lbl3.place(relx=0.01,rely=0.58,relwidth=0.04,relheight=0.1)
-
+        self.lbl3.place(relx=0.01,rely=0.57,relwidth=0.04,relheight=0.1)
+        self.lbl4= customtkinter.CTkLabel(self.frame1,corner_radius=25,text="",fg_color="black",height=50,width=5)
+        self.lbl4.place(relx=0.01,rely=0.73,relwidth=0.04,relheight=0.1)
         # hoşgeldin yazısı
         self.my_stringvar = customtkinter.StringVar()
         self.kullanıcılbl = customtkinter.CTkLabel(self.frame1,textvariable=self.my_stringvar).place(relx=0.2,rely=0.17,relwidth=0.6,relheight=0.05)
@@ -64,6 +67,7 @@ class Menu(customtkinter.CTkFrame):
         self.designer_lbl = customtkinter.CTkLabel(self.frame1,text="Designed By Özkan Yıldız 01.01.2024",font=("Arial",11)).place(relx=0.02,rely=0.9,relwidth=0.9,relheight=0.1)
         self.cıkıs_bıton= customtkinter.CTkButton(self.frame1,text="Çıkış Yap",command=self.cıkıs).place(relx=0.1,rely=0.04,relwidth=0.8,relheight=0.04)
         return True
+    # frame1 butonları
     def benim_sözlük(self):
         self.lbl_hide()
         self.lbl1.configure(fg_color="green")
@@ -71,6 +75,8 @@ class Menu(customtkinter.CTkFrame):
             self.ceviri_ac.frame_ceviri.destroy()
         if self.alıstırma_ac is not None:
             self.alıstırma_ac.frame_alıstırma.destroy()
+        if self.gramer_frame is not None:
+            self.gramer_frame.destroy()
         self.widgets_list()
     def ceviri(self):
         self.lbl_hide()
@@ -79,6 +85,8 @@ class Menu(customtkinter.CTkFrame):
         self.frame2.destroy()
         if self.alıstırma_ac is not None:
             self.alıstırma_ac.frame_alıstırma.destroy()
+        if self.gramer_frame is not None:
+            self.gramer_frame.destroy()
         self.ceviri_ac= translate.Ceviri_ac(self,self.ana_frame,self.listbox.get("all"))
     def alıstırma(self):
         self.lbl_hide()
@@ -87,7 +95,20 @@ class Menu(customtkinter.CTkFrame):
         self.frame2.destroy()
         if self.ceviri_ac is not None:
             self.ceviri_ac.frame_ceviri.destroy()
+        if self.gramer_frame is not None:
+            self.gramer_frame.destroy()
         self.alıstırma_ac = exercise.Alıstırma_ac(self,self.ana_frame,self.listbox.get("all"))
+    def gramer(self):
+        self.lbl_hide()
+        self.lbl4.configure(fg_color="green")
+        self.frame3.destroy()
+        self.frame2.place_forget()
+        if self.alıstırma_ac is not None:
+            self.alıstırma_ac.frame_alıstırma.destroy()
+        if self.ceviri_ac is not None:
+            self.ceviri_ac.frame_ceviri.destroy()
+        self.gramer_frame = gemini.Gemini_gramer_kontrol(self,self.ana_frame)
+        
     # frame1 çıkış butonu
     def cıkıs(self):
         cık_mesagebox = tkinter.messagebox.askyesno("Çıkış","Çıkış yapmak istediğinize emin misiniz?")
@@ -96,15 +117,11 @@ class Menu(customtkinter.CTkFrame):
             giriss= login.Giris(self)
             giriss.LoginScreen()
     # Frame1 label gizle    
-    def lbl_hide(self):
-        if self.frame1._fg_color=="white":
-            self.lbl1.configure(fg_color="white",bg_color="white")
-            self.lbl2.configure(fg_color="white",bg_color="white")
-            self.lbl3.configure(fg_color="white",bg_color="white") 
-        else:      
+    def lbl_hide(self):  
             self.lbl1.configure(fg_color="black",bg_color="black")
             self.lbl2.configure(fg_color="black",bg_color="black")
             self.lbl3.configure(fg_color="black",bg_color="black")         
+            self.lbl4.configure(fg_color="black",bg_color="black")         
 # Listeye Kaydenilenleri yükler        
     def oku(self,a):   
         file = open(f"{self.user_id}.txt","a")
@@ -115,6 +132,7 @@ class Menu(customtkinter.CTkFrame):
             i = i.replace("\n","")        
             a.insert(self.listbox.size(),i)    
         self.oku5.close()
+        
         
 #Listeye yeni satır ekler ve kaydeder siler --------------frame4----------------------
     def kaydet(self):
@@ -138,7 +156,6 @@ class Menu(customtkinter.CTkFrame):
                 if os.path.exists(f"{self.listbox.get()[0]}.txt"):
                     os.remove(f"{self.listbox.get()[0]}.txt")
                 self.listbox.delete(i)
-    # seçili listeyi açar seçili bir tane liste olmalı
     def liste_ac(self):
         try:
             self.result =  self.listbox.get()[0]  
