@@ -1,24 +1,27 @@
-This is the first significant project I have made for myself. I have just finished a preparation class;
-however, I learned to code by myself and then made this app.
-When I was studying English, I realized that I needed an app to save my unknown words, so I made this app.
-It really helped me and furthermore, it made me learn words that I didn't know.
-There are three parts: the first is my lists. You can add new lists, open, save, and delete these lists.
-When you open a list, you can add a word, its meaning, and an example of this word.
-The second part is translation; you can translate a word, sentence, or paragraph from English to Turkish or Turkish to English.
-After translation, you can directly add the word and its meaning to a list you created.
-The last part is practicing. Here, after adding words to a list, you can choose a list and it will pick a word from that list, presenting you with four choices to find the correct one.
+English
 
+This is my first significant personal project. After completing a preparation class, I self-taught coding and developed this app. While studying English, I saw the need for an app to save unfamiliar words, so I created this tool, which has effectively helped me learn new vocabulary. 
+The app features four sections: 
 
-Bu, kendim için yaptığım ilk önemli proje. Hazırlık kursunu yeni bitirdim; ancak kodlamayı kendi kendime öğrendim ve sonra bu uygulamayı yaptım.
-İngilizce öğrenirken, bilmediğim kelimelerimi kaydetmek için bir uygulamaya ihtiyacım olduğunu fark ettim, bu yüzden bu uygulamayı yaptım.
-Bu gerçekten bana yardımcı oldu ve dahası, bilmediğim kelimeleri öğrenmeme yardımcı oldu.
-Uygulama üç bölümden oluşuyor: ilki "Listelerim". Yeni listeler ekleyebilir, açabilir, kaydedebilir ve bu listeleri silebilirsiniz.
-Bir liste açtığınızda, bir kelime, anlamı ve bu kelimenin örneğini ekleyebilirsiniz.
-İkinci bölüm çeviri; İngilizceden Türkçeye veya Türkçeden İngilizceye kelime, cümle veya paragraf çevirebilirsiniz.
-Çeviriden sonra, kelimeyi ve anlamını doğrudan oluşturduğunuz bir listeye ekleyebilirsiniz.
-Son bölüm "Alıştırma" olarak adlandırılır. Burada, bir liste ekledikten sonra, bir liste seçebilir ve listeden bir kelime seçer, size doğru olanı bulmanız için dört seçenek sunar.
+1. **Lists**: You can create, open, save, and delete lists. Within a list, you can add words, their meanings, and examples.
+   
+2. **Translation**: Translate words, sentences, or paragraphs between English and Turkish, and add translated words and meanings directly to your lists.
+   
+3. **Practicing**: After adding words to a list, you can select a list to randomly present one word and provide four options to identify the correct meaning. You can also choose topics and levels for Gemini AI to generate quizzes.It will create quizes for you.
 
+4. **Grammar Corrector**: This feature checks your sentences for mistakes and explains them to you.
 
+Türkçe 
+
+Bu, kendim için yaptığım ilk önemli projelerimden biri. Hazırlık kursunu yeni bitirdim. Ancak, kodlamayı kendi kendime öğrendim ve bu uygulamayı geliştirdim. İngilizce öğrenirken, bilmediğim kelimeleri kaydetmek için bir uygulamaya ihtiyacım olduğunu fark ettim. Bu nedenle bu uygulamayı yaptım. Uygulama dört bölümden oluşuyor:
+
+1. İlk bölüm: 'Listelerim'. Yeni listeler ekleyebilir, açabilir, kaydedebilir ve silebilirsiniz. Bir liste açtığınızda, bir kelime, anlamı ve bu kelimenin kullanım örneğini ekleyebilirsiniz.
+
+2. İkinci bölüm: Çeviri. İngilizceden Türkçeye veya Türkçeden İngilizceye kelimeleri, cümleleri veya paragrafları çevirebilirsiniz. Çeviriden sonra, kelimeyi ve anlamını bir listeye ekleyebilirsiniz.
+
+3. Sonraki bölüm 'Alıştırma' olarak adlandırılır. Burada, bir liste ekledikten sonra bir kelime seçip dört seçenekle doğru olanı bulmanız istenir. Ayrıca, seçtiğiniz konu ve zorluk seviyesine göre Gemini AI yeni sorular oluşturur.
+
+4. En son olarak gramer kontrol kısmı bulunmaktadır. Gemini AI, gönderdiğiniz cümlelerin hatalı olup olmadığını kontrol edip hataları size açıklar.
 
 
 
